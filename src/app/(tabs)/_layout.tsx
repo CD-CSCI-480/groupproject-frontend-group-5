@@ -22,8 +22,6 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
       }}>
       <Tabs.Screen
@@ -32,11 +30,11 @@ export default function TabLayout() {
           title: 'Foci',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/user" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
-                    name="info-circle"
+                    name="user"
                     size={25}
                     color={Colors[colorScheme ?? 'light'].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
@@ -52,6 +50,20 @@ export default function TabLayout() {
         options={{
           title: 'Tab Two',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="user"
+        options={{
+          title: "Profile",
+          href: null
+        }}
+      />
+      <Tabs.Screen
+        name="achievements"
+        options={{
+          title: 'Achievements',
+          tabBarIcon: ({color}) => <TabBarIcon name='trophy' color={color} />
         }}
       />
     </Tabs>

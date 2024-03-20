@@ -1,12 +1,15 @@
-import {StyleSheet, View, Text} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text, Image} from 'react-native';
+import achievements from "../../../assets/data/achievements";
 
-// const achievement = achievements[0]
+const achievement = achievements[0];
 
 export default function AchievementsScreen() {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Novus</Text>
-            <Text style={styles.description}>Focus for 10 hours</Text>
+            <Image source={require('../../../assets/images/novus-medal.png')} style={styles.image}/>
+            <Text style={styles.title}>{achievement.name}</Text>
+            <Text style={styles.description}>{achievement.description}</Text>
         </View>
     )
 }
@@ -14,12 +17,19 @@ export default function AchievementsScreen() {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      backgroundColor: 'white',
+      padding: 10,
+      borderRadius: 20
+    },
+    image : {
+      width: "100%",
+      aspectRatio: 1
     },
     title: {
       fontSize: 20,
       fontWeight: 'bold',
-      marginVertical: 10
+      marginVertical: 10,
+      textAlign:'center'
     },
     separator: {
       marginVertical: 30,
@@ -28,6 +38,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 15,
-        color: 'dimgrey'
+        color: 'dimgrey',
+        textAlign:'center'
     }
   });

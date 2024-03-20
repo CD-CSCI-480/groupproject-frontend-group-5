@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
       aspectRatio: 1
     },
     title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      marginVertical: 10,
+      fontSize: 18,
+      fontWeight: '500',
+      marginVertical: 2,
       textAlign:'center'
     },
     separator: {

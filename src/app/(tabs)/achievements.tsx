@@ -10,7 +10,7 @@ export default function AchievementsScreen() {
       data={achievements}
       renderItem={({item}) => <MedalListItem achievement={item}/>} 
       numColumns={2}
-      contentContainerStyle={{gap: 10, padding: 15}}
+      contentContainerStyle={{gap: 10, padding: 10}}
       columnWrapperStyle={{gap: 10}}
     />
   );

@@ -28,7 +28,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Foci',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="power-off" color={color} />,
           headerRight: () => (
             <Link href="/user" asChild>
               <Pressable>
@@ -56,7 +56,22 @@ export default function TabLayout() {
         name="user"
         options={{
           title: "Profile",
-          href: null
+          href: null,
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="cog"
+                    size={25}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          )
+          
         }}
       />
       <Tabs.Screen
@@ -64,6 +79,14 @@ export default function TabLayout() {
         options={{
           title: 'Achievements',
           tabBarIcon: ({color}) => <TabBarIcon name='trophy' color={color} />
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title:"settings",
+          href: null,
+          tabBarIcon: ({color}) => <TabBarIcon name='cog' color={color} />
         }}
       />
     </Tabs>

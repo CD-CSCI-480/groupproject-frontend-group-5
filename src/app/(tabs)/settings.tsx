@@ -11,6 +11,7 @@ interface SettingItem {
   onToggleChange?: (isOn: boolean) => void;
 }
 
+
 const SettingsScreen: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false); // Initial dark mode state
 

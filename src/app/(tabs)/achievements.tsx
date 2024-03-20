@@ -11,6 +11,7 @@ export default function AchievementsScreen() {
     )
 }
 
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,

@@ -11,6 +11,7 @@ export default function UserScreen() {
         style={styles.gradient}
         start={{ x: 0, y: 0 }} 
         end={{ x: 0, y: 0.25 }} 
+        
       />
       <View style={styles.achievementsBox}>
         <Text style={styles.achievementsTitle}>Achievements</Text>

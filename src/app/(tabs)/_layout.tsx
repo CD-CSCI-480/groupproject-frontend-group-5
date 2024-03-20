@@ -88,6 +88,7 @@ export default function TabLayout() {
           href: null,
           tabBarIcon: ({color}) => <TabBarIcon name='cog' color={color} />
         }}
+        
       />
     </Tabs>
   );

@@ -68,7 +68,7 @@ const FocusSession = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#d7d2cb', 
+    backgroundColor: '#fff', 
     alignItems: 'center',
     justifyContent: 'center', 
   },

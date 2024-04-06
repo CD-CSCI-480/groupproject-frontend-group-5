@@ -53,6 +53,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="leaderboard"
+        options={{
+          title: 'leaderboard',
+          href: null,
+        }}
+      />
+      <Tabs.Screen
         name="user"
         options={{
           title: "Profile",

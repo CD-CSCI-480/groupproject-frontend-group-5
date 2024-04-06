@@ -1,24 +1,21 @@
 import { Text, View } from '@/src/components/Themed';
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { StyleSheet, Pressable } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
 
 export default function UserScreen() {
   return (
     <View style={styles.container}>
-      <LinearGradient
-        colors={['#FFB37E', '#FFEB9C', '#fff']}
-        style={styles.gradient}
-        start={{ x: 0, y: 0 }} 
-        end={{ x: 0, y: 0.25 }} 
-        
-      />
-      <View style={styles.achievementsBox}>
+      <Pressable style={styles.achievementsBox}> 
         <Text style={styles.achievementsTitle}>Achievements</Text>
-      </View>
-      <View style={styles.friendsBox}>
+        <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} /> 
+      </Pressable> 
+
+      <Pressable style={styles.friendsBox}> 
         <Text style={styles.friendsTitle}>Friends</Text>
-    </View>
+        <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
+      </Pressable> 
     </View>
   );
 }
@@ -28,18 +25,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  gradientContainer: {
-    flex: 1,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
-  gradient: {
-    width: '100%',
-    height: '100%',
   },
   achievementsBox: {
     backgroundColor: '#ccc', 
@@ -76,5 +61,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10, 
+  },
+  arrowIcon: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10, 
   },
 });

@@ -4,54 +4,33 @@ import { Text, View, Switch, StyleSheet } from 'react-native';
 interface Session {
   name: string;
   isActive: boolean;
-  duration: number;
+  duration: number; // Initial duration
   startTime?: number;
 }
 
 type SessionState = Session[];
 
-const ProgressBar = ({ progress }: { progress: number }) => (
-  <View style={styles.progressBar}>
-    <View style={{ ...styles.progress, width: `${progress * 100}%` }} />
-  </View>
-);
-
 export default function FocusApp() {
   const [sessions, setSessions] = useState<SessionState>([
-    { name: 'Work', isActive: false, duration: 25 },
+    { name: 'Work', isActive: false, duration: 25 }, 
     { name: 'Personal', isActive: false, duration: 10 },
     { name: 'Study', isActive: false, duration: 45 },
   ]);
-  const [currentTime, setCurrentTime] = useState(Date.now());
-  const [activeSessionIndex, setActiveSessionIndex] = useState<number | null>(null);
 
   const handleToggleSession = (index: number) => {
     setSessions((prevSessions) =>
       prevSessions.map((session, i) => ({
         ...session,
         isActive: i === index ? !session.isActive : false,
-        startTime: i === index && !session.isActive ? Date.now() : session.startTime,
+        startTime: i === index && !session.isActive ? Date.now() : session.startTime || Date.now(), 
       }))
     );
-    setActiveSessionIndex(index === activeSessionIndex ? null : index);
   };
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(Date.now());
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  const activeSession = sessions.find((session, index) => session.isActive && index === activeSessionIndex);
-
-  const progress = activeSession ? (activeSession.duration * 60 - (currentTime - (activeSession.startTime || 0))) / (activeSession.duration * 60) : 0;
 
   return (
     <View style={styles.container}>
       <Text style={styles.appTitle}>Foci</Text>
-      <ProgressBar progress={progress} />
+
       <View style={styles.sessionsContainer}>
         {sessions.map((session, index) => (
           <FocusSession
@@ -116,15 +95,5 @@ const styles = StyleSheet.create({
   sessionName: {
     fontSize: 18,
     color: '#fff', 
-  },
-  progressBar: {
-    width: '80%',
-    height: 10,
-    backgroundColor: '#ccc', // Default background color
-    marginBottom: 20,
-  },
-  progress: {
-    height: '100%',
-    backgroundColor: '#007bff', // Progress bar color
   },
 });

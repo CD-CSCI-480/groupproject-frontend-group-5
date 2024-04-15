@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Pressable, Text, View } from 'react-native';
+import { StyleSheet, Pressable, Text, View, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -26,25 +26,25 @@ export default function UserScreen() {
       </Pressable>
 
       <Modal isVisible={isAchievementsModalVisible} style={styles.modalContent}>
-        <Pressable onPress={() => {
+        <TouchableOpacity onPress={() => {
           navigation.navigate('achievements');
           setIsAchievementsModalVisible(false);
         }}>
           <Text style={styles.modalText}>Achievements</Text>
-        </Pressable>
+        </TouchableOpacity>
         <Pressable onPress={() => setIsAchievementsModalVisible(false)}>
-          <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end', marginTop: -40}} />
+          <FontAwesome name="close" size={30} color="white" style={{ alignSelf: 'flex-end', marginTop: -25}} />
         </Pressable>
       </Modal>
       <Modal isVisible={isLeaderboardModalVisible} style={styles.modalContent}>
-        <Pressable onPress={() => {
+        <TouchableOpacity onPress={() => {
           navigation.navigate('leaderboard');
           setIsLeaderboardModalVisible(false);
         }}>
           <Text style={styles.modalText}>Leaderboard</Text>
-        </Pressable>
+        </TouchableOpacity>
         <Pressable onPress={() => setIsLeaderboardModalVisible(false)}>
-          <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end', marginTop: -40}} />
+          <FontAwesome name="close" size={30} color="white" style={{ alignSelf: 'flex-end', marginTop: -25}} />
         </Pressable>
       </Modal>
     </View>
@@ -99,18 +99,19 @@ const styles = StyleSheet.create({
     right: 10,
   },
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: 'orange',
     position: 'absolute',
-    width: '100%',
-    height: 100,
+    width: '90%',
+    height: 60,
     padding: 20,
-    marginTop: 770,
-    margin: 0
+    marginTop: 700,
+    borderRadius: 40,
+    margin: 25
   },
   modalText: {
-    fontSize: 18,
+    fontSize: 21,
     textAlign: 'center',
-    color: 'orange',
-    marginTop: -30
+    color: 'white',
+    marginTop: 0
   }
 });

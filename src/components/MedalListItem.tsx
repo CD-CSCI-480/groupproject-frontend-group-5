@@ -21,10 +21,10 @@ const MedalListItem = ({ achievement } : MedalListItemProps) => {
         <View style={styles.modal}>
           <TouchableOpacity onPress={() => setIsModalVisible(false)}>
             <Text style={styles.closeButton}>X</Text>
-            <Image src={achievement.image} style={styles.image} resizeMode='cover'/>
-            <Text style={styles.title}>{achievement.name}</Text>
-            <Text style={styles.description}>{achievement.description}</Text>
           </TouchableOpacity>
+          <Image src={achievement.image} style={styles.image} resizeMode='cover'/>
+          <Text style={styles.title}>{achievement.name}</Text>
+          <Text style={styles.description}>{achievement.description}</Text>
         </View>
       </Modal>
     </View>
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     closeButton: {
       fontSize: 35,
       margin: 5,
-      marginTop: -80,
+      marginTop: -70,
       color: 'lightgrey'
     }
   });

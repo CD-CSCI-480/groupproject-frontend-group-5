@@ -84,6 +84,7 @@ export default function TabLayout() {
         name="achievements"
         options={{
           title: 'Achievements',
+          href: null,
           tabBarIcon: ({color}) => <TabBarIcon name='trophy' color={color} />
         }}
       />

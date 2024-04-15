@@ -2,15 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, Switch, StyleSheet } from 'react-native';
 
 
-
-
 interface SettingItem {
   title: string;
   value?: string;
   toggle?: boolean;
   onToggleChange?: (isOn: boolean) => void;
 }
-
 
 const SettingsScreen: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false); // Initial dark mode state

@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { StyleSheet, Pressable, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import Modal from 'react-native-modal';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function UserScreen() {
+  const [userName, setUserName] = useState('Placeholder Name'); 
   const [isAchievementsModalVisible, setIsAchievementsModalVisible] = useState(false);
   const [isLeaderboardModalVisible, setIsLeaderboardModalVisible] = useState(false);
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
+
+      <View style={styles.userNameContainer}>
+        <Text style={styles.userNameText}>{userName}</Text> 
+      </View>
+
       <Pressable
         style={styles.achievementsBox}
         onPress={() => setIsAchievementsModalVisible(true)}>
@@ -36,6 +43,7 @@ export default function UserScreen() {
           <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end' }} />
         </Pressable>
       </Modal>
+
       <Modal isVisible={isLeaderboardModalVisible} style={styles.modalContent}>
         <Pressable onPress={() => {
           navigation.navigate('leaderboard');
@@ -56,9 +64,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   achievementsBox: {
-    backgroundColor: '#ccc',
+    backgroundColor: 'rgba(52, 52, 52, 0.5)', 
     width: 350,
     height: 150,
     position: 'absolute',
@@ -76,7 +85,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   friendsBox: {
-    backgroundColor: '#ccc',
+    backgroundColor: 'rgba(52, 52, 52, 0.5)', 
     width: 350,
     height: 150,
     position: 'absolute',
@@ -105,9 +114,17 @@ const styles = StyleSheet.create({
     width: '90%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    padding: 20,
+    padding: 15,
   },
   modalText: {
     fontSize: 18,
-  }
+  },
+  userNameContainer: {
+    position: 'absolute',
+    top: 20, 
+    left: 20, 
+  },
+  userNameText: {
+    fontSize: 18,
+  },
 });

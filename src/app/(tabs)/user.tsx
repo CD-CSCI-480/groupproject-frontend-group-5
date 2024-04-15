@@ -30,10 +30,10 @@ export default function UserScreen() {
           navigation.navigate('achievements');
           setIsAchievementsModalVisible(false);
         }}>
-          <Text style={styles.modalText}>Go to Achievements</Text>
+          <Text style={styles.modalText}>Achievements</Text>
         </Pressable>
         <Pressable onPress={() => setIsAchievementsModalVisible(false)}>
-          <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end' }} />
+          <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end', marginTop: -40}} />
         </Pressable>
       </Modal>
       <Modal isVisible={isLeaderboardModalVisible} style={styles.modalContent}>
@@ -41,10 +41,10 @@ export default function UserScreen() {
           navigation.navigate('leaderboard');
           setIsLeaderboardModalVisible(false);
         }}>
-          <Text style={styles.modalText}>Go to Leaderboard</Text>
+          <Text style={styles.modalText}>Leaderboard</Text>
         </Pressable>
         <Pressable onPress={() => setIsLeaderboardModalVisible(false)}>
-          <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end' }} />
+          <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end', marginTop: -40}} />
         </Pressable>
       </Modal>
     </View>
@@ -101,13 +101,16 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: 'white',
     position: 'absolute',
-    bottom: 0,
-    width: '90%',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    width: '100%',
+    height: 100,
     padding: 20,
+    marginTop: 770,
+    margin: 0
   },
   modalText: {
     fontSize: 18,
+    textAlign: 'center',
+    color: 'orange',
+    marginTop: -30
   }
 });

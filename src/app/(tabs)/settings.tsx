@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginVertical: 10,
     padding: 10,
+    marginTop: 60
   },
   settingItem: {
     flexDirection: 'row',

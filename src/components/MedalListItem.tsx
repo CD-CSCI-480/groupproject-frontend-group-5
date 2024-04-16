@@ -1,5 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
+import {NavigationContainer} from '@react-navigation/native'
+import {createStackNavigator} from 'react-navigation-stack'
 import {StyleSheet, View, Text, Image, Modal, Pressable, Button, TouchableOpacity} from 'react-native';
 import achievements from "../../assets/data/achievements";
 import { Achievement } from '../types';

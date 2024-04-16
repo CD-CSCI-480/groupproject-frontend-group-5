@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { StyleSheet, Pressable, Text, View, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { Link, Tabs } from 'expo-router';
+import Colors from '@/src/constants/Colors';
+import { useColorScheme } from '@/src/components/useColorScheme';
+import { useClientOnlyValue } from '@/src/components/useClientOnlyValue';
 
 export default function UserScreen() {
   const [isAchievementsModalVisible, setIsAchievementsModalVisible] = useState(false);
   const [isLeaderboardModalVisible, setIsLeaderboardModalVisible] = useState(false);
   const navigation = useNavigation();
+  const colorScheme = useColorScheme();
+
 
   return (
     <View style={styles.container}>
@@ -24,6 +31,19 @@ export default function UserScreen() {
         <Text style={styles.friendsTitle}>Friends</Text>
         <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
       </Pressable>
+
+      <Link href="/settings" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <Ionicons
+                    name="settings"
+                    size={32}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{marginLeft: 320, marginTop: -300, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
 
       <Modal isVisible={isAchievementsModalVisible} style={styles.modalContent}>
         <TouchableOpacity onPress={() => {

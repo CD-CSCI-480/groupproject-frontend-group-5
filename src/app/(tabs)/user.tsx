@@ -6,8 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
+import { useColorScheme } from '@/src/components/useColorScheme';
+import { Link, Tabs } from 'expo-router';
+import Colors from '@/src/constants/Colors';
 
 export default function UserScreen() {
+  const [userName, setUserName] = useState('Placeholder Name'); 
   const [isAchievementsModalVisible, setIsAchievementsModalVisible] = useState(false);
   const [isLeaderboardModalVisible, setIsLeaderboardModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -36,6 +40,19 @@ export default function UserScreen() {
           <Text style={styles.friendsTitle}>Friends</Text>
           <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
         </Pressable>
+
+        <Link href="/settings" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="cog"
+                    size={30}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{marginTop: -310 ,marginLeft: 310, marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
 
         <Modal isVisible={isAchievementsModalVisible} style={styles.modalContent}>
           <Pressable onPress={() => {
@@ -135,5 +152,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     marginTop: 0
-  }
+  },
+  userNameContainer: {
+    position: 'absolute',
+    top: 20, 
+    left: 20, 
+  },
+  userNameText: {
+    fontSize: 18,
+    marginTop: 60
+  },
 });

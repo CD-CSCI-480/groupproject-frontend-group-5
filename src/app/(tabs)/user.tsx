@@ -4,10 +4,8 @@ import Modal from 'react-native-modal';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { Link, Tabs } from 'expo-router';
-import Colors from '@/src/constants/Colors';
-import { useColorScheme } from '@/src/components/useColorScheme';
-import { useClientOnlyValue } from '@/src/components/useClientOnlyValue';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
 export default function UserScreen() {
   const [isAchievementsModalVisible, setIsAchievementsModalVisible] = useState(false);
@@ -17,57 +15,53 @@ export default function UserScreen() {
 
 
   return (
-    <View style={styles.container}>
-      <Pressable
-        style={styles.achievementsBox}
-        onPress={() => setIsAchievementsModalVisible(true)}>
-        <Text style={styles.achievementsTitle}>Achievements</Text>
-        <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
-      </Pressable>
+    <LinearGradient // Apply LinearGradient as a wrapper
+      colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
+      style={styles.container}>
+      <View style={styles.contentContainer}>
+        <View style={styles.userNameContainer}>
+          <Text style={styles.userNameText}>{userName}</Text> 
+        </View>
 
-      <Pressable
-        style={styles.friendsBox}
-        onPress={() => setIsLeaderboardModalVisible(true)}>
-        <Text style={styles.friendsTitle}>Friends</Text>
-        <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
-      </Pressable>
-
-      <Link href="/settings" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <Ionicons
-                    name="settings"
-                    size={32}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{marginLeft: 320, marginTop: -300, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-
-      <Modal isVisible={isAchievementsModalVisible} style={styles.modalContent}>
-        <TouchableOpacity onPress={() => {
-          navigation.navigate('achievements');
-          setIsAchievementsModalVisible(false);
-        }}>
-          <Text style={styles.modalText}>Achievements</Text>
-        </TouchableOpacity>
-        <Pressable onPress={() => setIsAchievementsModalVisible(false)}>
-          <FontAwesome name="close" size={30} color="white" style={{ alignSelf: 'flex-end', marginTop: -25}} />
+        <Pressable
+          style={styles.achievementsBox}
+          onPress={() => setIsAchievementsModalVisible(true)}>
+          <Text style={styles.achievementsTitle}>Achievements</Text>
+          <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
         </Pressable>
-      </Modal>
-      <Modal isVisible={isLeaderboardModalVisible} style={styles.modalContent}>
-        <TouchableOpacity onPress={() => {
-          navigation.navigate('leaderboard');
-          setIsLeaderboardModalVisible(false);
-        }}>
-          <Text style={styles.modalText}>Leaderboard</Text>
-        </TouchableOpacity>
-        <Pressable onPress={() => setIsLeaderboardModalVisible(false)}>
-          <FontAwesome name="close" size={30} color="white" style={{ alignSelf: 'flex-end', marginTop: -25}} />
+
+        <Pressable
+          style={styles.friendsBox}
+          onPress={() => setIsLeaderboardModalVisible(true)}>
+          <Text style={styles.friendsTitle}>Friends</Text>
+          <FontAwesome name="pencil" size={24} color="black" style={styles.arrowIcon} />
         </Pressable>
-      </Modal>
-    </View>
+
+        <Modal isVisible={isAchievementsModalVisible} style={styles.modalContent}>
+          <Pressable onPress={() => {
+            navigation.navigate('achievements');
+            setIsAchievementsModalVisible(false);
+          }}>
+            <Text style={styles.modalText}>Go to Achievements</Text>
+          </Pressable>
+          <Pressable onPress={() => setIsAchievementsModalVisible(false)}>
+            <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end' }} />
+          </Pressable>
+        </Modal>
+
+        <Modal isVisible={isLeaderboardModalVisible} style={styles.modalContent}>
+          <Pressable onPress={() => {
+            navigation.navigate('leaderboard');
+            setIsLeaderboardModalVisible(false);
+          }}>
+            <Text style={styles.modalText}>Go to Leaderboard</Text>
+          </Pressable>
+          <Pressable onPress={() => setIsLeaderboardModalVisible(false)}>
+            <FontAwesome name="close" size={24} color="black" style={{ alignSelf: 'flex-end' }} />
+          </Pressable>
+        </Modal>
+      </View>
+    </LinearGradient>
   );
 }
 
@@ -76,6 +70,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    paddingHorizontal: 20,
   },
   achievementsBox: {
     backgroundColor: '#ccc',
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 200,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: '#fff',
     shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.5,
     shadowRadius: 5,
@@ -102,7 +104,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 370,
     borderRadius: 10,
-    shadowColor: '#000',
+    shadowColor: '#fff',
     shadowOffset: { width: 3, height: 3 },
     shadowOpacity: 0.5,
     shadowRadius: 5,

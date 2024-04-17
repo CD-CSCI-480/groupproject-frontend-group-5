@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 
 interface LeaderboardEntry {
   username: string;
@@ -15,20 +16,29 @@ const Leaderboard = () => {
   ];
 
   return (
-    <View style={styles.leaderboardContainer}>
-      <Text style={styles.leaderboardTitle}>Leaderboard</Text>
-      {sampleLeaderboardData.map((entry, index) => (
-        <View style={styles.leaderboardEntry} key={index}> 
-          <Text style={styles.ranking}>{index + 1}</Text>
-          <Text style={styles.username}>{entry.username}</Text>
-          <Text style={styles.focusHours}>{entry.focusHours} Hours</Text>
-        </View>
-      ))}
-    </View>
+    <LinearGradient // Apply LinearGradient as a wrapper
+      colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
+      style={styles.container}>
+      <View style={styles.leaderboardContainer}>
+        <Text style={styles.leaderboardTitle}>Leaderboard</Text>
+        {sampleLeaderboardData.map((entry, index) => (
+          <View style={styles.leaderboardEntry} key={index}> 
+            <Text style={styles.ranking}>{index + 1}</Text>
+            <Text style={styles.username}>{entry.username}</Text>
+            <Text style={styles.focusHours}>{entry.focusHours} Hours</Text>
+          </View>
+        ))}
+      </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   leaderboardContainer: {
     width: '100%',
     backgroundColor: '#fff',

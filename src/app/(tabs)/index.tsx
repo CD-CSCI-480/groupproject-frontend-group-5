@@ -114,7 +114,7 @@ const FocusSession = ({
     <Switch
       value={isActive}
       onValueChange={onToggle}
-      trackColor={{ false: '#747d8c', true: 'orange' }}
+      trackColor={{ false: '#7fff', true: '#000' }}
       thumbColor={isActive ? 'white' : '#f4f4f4'}
     />
   </View>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     padding: 20,
-    backgroundColor: '#535b70',
+    backgroundColor: 'orange',
     borderRadius: 10,
   },
   sessionName: {

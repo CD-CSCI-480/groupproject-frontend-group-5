@@ -48,6 +48,7 @@ export default function TabLayout() {
         name="two"
         options={{
           title: 'Social',
+          href:null,
           tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
         }}
       />

@@ -56,7 +56,7 @@ export default function FocusApp() {
   };
   const colorScheme = useColorScheme();
   return (
-    
+
     <LinearGradient // Apply LinearGradient as a wrapper
       colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
       style={styles.container}>
@@ -68,7 +68,8 @@ export default function FocusApp() {
             </Text>
           )}
         </View>
-
+          
+        <View>
         <Link href="/user" asChild>
               <Pressable>
                 {({ pressed }) => (
@@ -81,6 +82,7 @@ export default function FocusApp() {
                 )}
               </Pressable>
             </Link>
+            </View>
 
         <Text style={styles.appTitle}>Foci</Text>
         <View style={styles.sessionsContainer}>

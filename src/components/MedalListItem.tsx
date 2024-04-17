@@ -5,6 +5,7 @@ import {createStackNavigator} from 'react-navigation-stack'
 import {StyleSheet, View, Text, Image, Modal, Pressable, Button, TouchableOpacity} from 'react-native';
 import achievements from "../../assets/data/achievements";
 import { Achievement } from '../types';
+import * as Progress from 'react-native-progress'
 
 type MedalListItemProps = {
     achievement: Achievement;
@@ -18,6 +19,7 @@ const MedalListItem = ({ achievement } : MedalListItemProps) => {
         <Image src={achievement.image} style={styles.image} resizeMode='cover'/>
         <Text style={styles.title}>{achievement.name}</Text>
         <Text style={styles.description}>{achievement.description}</Text>
+        <Progress.Bar progress={0} width={150} color='orange' style={{marginTop: 10}}/>
       </TouchableOpacity>
       <Modal transparent={true} visible={isModalVisible} style={styles.modal}>
         <View style={styles.modal}>
@@ -83,5 +85,8 @@ const styles = StyleSheet.create({
       margin: 5,
       marginTop: -70,
       color: 'lightgrey'
+    },
+    progressBar: {
+      marginTop: 20,
     }
   });

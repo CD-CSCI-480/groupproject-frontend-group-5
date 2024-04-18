@@ -3,8 +3,7 @@ import { View, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import achievements from "../../../assets/data/achievements";
 import MedalListItem from '@/src/components/MedalListItem';
-import {createStackNavigator} from '@react-navigation/stack'
-import { NavigationContainer } from '@react-navigation/native';
+
 
 export default function AchievementsScreen() {
   return (

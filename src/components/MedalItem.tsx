@@ -11,16 +11,14 @@ type MedalListItemProps = {
     achievement: Achievement;
 };
 
-const MedalListItem = ({ achievement } : MedalListItemProps) => {
+const MedalItem = ({ achievement } : MedalListItemProps) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => setIsModalVisible(true)}>
+        <Text style={styles.inspirationalText}>Keep working hard toward your next achievement</Text>
         <Image src={achievement.image} style={styles.image} resizeMode='cover'/>
         <Text style={styles.title}>{achievement.name}</Text>
         <Text style={styles.description}>{achievement.description}</Text>
-        <Progress.Bar progress={0} width={150} color='orange' style={{marginTop: 10}}/>
-      </TouchableOpacity>
       <Modal transparent={true} visible={isModalVisible} style={styles.modal}>
         <View style={styles.modal}>
           <TouchableOpacity onPress={() => setIsModalVisible(false)}>
@@ -35,35 +33,39 @@ const MedalListItem = ({ achievement } : MedalListItemProps) => {
   )
 };
 
-export default MedalListItem;
+export default MedalItem;
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: 'white',
       padding: 20,
-      borderWidth: 1,
-      borderColor: 'lightgrey',
-      borderRadius: 20,
       flex: 1,
-      maxWidth: "50%"
+      maxWidth: "100%",
+      marginTop: -120
     },
     image : {
       width: "100%",
       aspectRatio: 1
     },
     title: {
-      fontSize: 18,
+      fontSize: 25,
       fontWeight: '500',
       marginVertical: 2,
       textAlign:'center'
     },
+    inspirationalText: {
+        fontSize: 18,
+        marginVertical: 2,
+        textAlign:'center',
+        marginBottom: 20,
+        marginTop: -20
+      },
     separator: {
       marginVertical: 30,
       height: 1,
       width: '80%',
     },
     description: {
-        fontSize: 13,
+        fontSize: 18,
         color: 'dimgrey',
         textAlign:'center'
     },

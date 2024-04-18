@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TextInput, Button } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
 import { useColorScheme } from '@/src/components/useColorScheme';
 import { Link } from 'expo-router';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import Colors from '@/src/constants/Colors';
+import MedalListItem from '@/src/components/MedalListItem';
+import achievements from '@/assets/data/achievements';
+import MedalItem from '@/src/components/MedalItem';
 
 export default function FocusApp() {
   const [inputTime, setInputTime] = useState('');
@@ -50,6 +53,7 @@ export default function FocusApp() {
     <LinearGradient // Apply LinearGradient as a wrapper
       colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
       style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.contentContainer}>
         <View style={styles.timerContainer}>
           <Text style={styles.timer}>
@@ -60,10 +64,10 @@ export default function FocusApp() {
         <View>
           <Link href="/user" asChild>
             <FontAwesome
-              name="user"
+              name="user-circle"
               size={30}
               color={Colors[colorScheme ?? 'light'].text}
-              style={{ marginLeft: 315, marginTop: -300, marginRight: 15 }}
+              style={{ marginLeft: 305, marginTop: -95, marginRight: 15 }}
             />
           </Link>
         </View>
@@ -81,11 +85,15 @@ export default function FocusApp() {
           />
           <View style={styles.buttonsBox}>
             <View style={styles.buttonContainer}>
-              <Button title={timerRunning ? 'Stop' : 'Start'} onPress={timerRunning ? handleTimerStop : handleTimerStart} />
+              <Button title={timerRunning ? 'Stop' : 'Start'} onPress={timerRunning ? handleTimerStop : handleTimerStart} color='white'/>
             </View>
           </View>
         </View>
+        <View style={{height: 200}}>
+          <MedalItem achievement={achievements[0]}></MedalItem>
+        </View>
       </View>
+      </TouchableWithoutFeedback>
     </LinearGradient>
   );
 }
@@ -129,14 +137,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: 20,
+    width: '80%',
+    height: 250,
   },
   input: {
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 5,
-    paddingHorizontal: 10,
+    paddingHorizontal: 40,
     marginBottom: 10,
     width: '80%',
+    fontSize: 30
   },
   buttonsBox: {
     flexDirection: 'row',

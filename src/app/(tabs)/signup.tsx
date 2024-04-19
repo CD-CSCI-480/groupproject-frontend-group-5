@@ -21,7 +21,7 @@ export default function SignupScreen() {
     console.log("Create Account button pressed");
 
     // After successful account creation, navigate to the desired screen
-    navigation.navigate('Home'); // Change 'Home' to the name of your home screen
+    navigation.navigate('index'); 
   };
 
   return (
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     marginBottom: 60,
-    marginRight: 130,
     zIndex: 1,
     
   },
@@ -140,7 +139,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     fontSize: 18,
-    width: 150, 
+    width: 150,
   },
   longInput: {
     borderWidth: 1,
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     fontSize: 18,
-    width: 325, 
+    width: 325,
   },
   checkboxContainer: {
     flexDirection: 'row',

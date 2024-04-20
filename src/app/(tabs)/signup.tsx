@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Text } from '@/src/components/Themed';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useNavigation } from '@react-navigation/native'; // Importing useNavigation hook
+import { useNavigation } from '@react-navigation/native';
 
 export default function SignupScreen() {
-  const navigation = useNavigation(); // Using useNavigation hook to access navigation object
+  const navigation = useNavigation();
 
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
@@ -19,60 +19,50 @@ export default function SignupScreen() {
 
   const handleCreateAccount = () => {
     console.log("Create Account button pressed");
-
-    // After successful account creation, navigate to the desired screen
-    navigation.navigate('index'); 
+    navigation.navigate('index');
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.gradientContainer}>
-        <LinearGradient
-          colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
-          style={styles.gradient}
-        />
-      </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <LinearGradient
+        colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
+        style={styles.gradient}
+      />
       <Text style={styles.title}>Sign Up to Foci</Text>
       <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Name:</Text>
-          <TextInput
-            style={styles.input}
-            value={name}
-            onChangeText={setName}
-          />
-        </View>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Username:</Text>
-          <TextInput
-            style={styles.input}
-            value={username}
-            onChangeText={setUsername}
-          />
-        </View>
+        <Text style={styles.label}>Name:</Text>
+        <TextInput
+          style={styles.input}
+          value={name}
+          onChangeText={setName}
+        />
       </View>
       <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Email:</Text>
-          <TextInput
-            style={styles.longInput}
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-        </View>
+        <Text style={styles.label}>Username:</Text>
+        <TextInput
+          style={styles.input}
+          value={username}
+          onChangeText={setUsername}
+        />
       </View>
       <View style={styles.inputContainer}>
-        <View style={styles.labelContainer}>
-          <Text style={styles.label}>Password:</Text>
-          <TextInput
-            style={styles.longInput}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={true}
-          />
-        </View>
+        <Text style={styles.label}>Email:</Text>
+        <TextInput
+          style={styles.longInput}
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <Text style={styles.label}>Password:</Text>
+        <TextInput
+          style={styles.longInput}
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
       </View>
       <View style={styles.checkboxContainer}>
         <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
@@ -84,7 +74,7 @@ export default function SignupScreen() {
         </TouchableOpacity>
         <Text style={styles.agreeText}>
           I agree with Foci Terms of Service, Privacy Policy, {"\n"}
-           and default Notification Settings.
+          and default Notification Settings.
         </Text>
       </View>
       <TouchableOpacity
@@ -94,44 +84,36 @@ export default function SignupScreen() {
         <Text style={styles.createAccountText}>Create Account</Text>
       </TouchableOpacity>
       <Text style={styles.signInText}>Already have an account? Sign In</Text>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  gradientContainer: {
+  gradient: {
     position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
-    height: '20%', 
-  },
-  gradient: {
-    flex: 1,
+    height: '20%',
+    width: '100%',
   },
   title: {
     fontSize: 32,
     marginBottom: 60,
     zIndex: 1,
-    
   },
   inputContainer: {
     marginBottom: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  labelContainer: {
-    flex: 1,
-    marginRight: 20,
   },
   label: {
     marginBottom: 5,
     fontSize: 18,
+    alignSelf: 'flex-start',
   },
   input: {
     borderWidth: 1,
@@ -139,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     fontSize: 18,
-    width: 150,
+    width: 250,
   },
   longInput: {
     borderWidth: 1,
@@ -147,12 +129,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     fontSize: 18,
-    width: 325,
+    width: 250,
   },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
+    alignSelf: 'flex-start',
   },
   checkbox: {
     width: 20,
@@ -162,6 +145,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
+    marginRight: 10,
   },
   checked: {
     color: '#FE9F0F',
@@ -172,7 +156,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   agreeText: {
-    marginLeft: 10,
     fontSize: 12,
   },
   createAccountButton: {

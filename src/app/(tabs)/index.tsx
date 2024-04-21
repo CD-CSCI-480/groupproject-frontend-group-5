@@ -8,6 +8,7 @@ import Colors from '@/src/constants/Colors';
 import MedalListItem from '@/src/components/MedalListItem';
 import achievements from '@/assets/data/achievements';
 import MedalItem from '@/src/components/MedalItem';
+import { Picker } from '@react-native-picker/picker';
 
 export default function FocusApp() {
   const [inputTime, setInputTime] = useState('');
@@ -35,12 +36,46 @@ export default function FocusApp() {
 
   const colorScheme = useColorScheme();
 
-  const handleTimerStart = () => {
-    const [hours = 0, minutes = 0, seconds = 0] = inputTime.split(':').map(Number);
-    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-    setTimerDuration(totalSeconds);
-    setRemainingTime(totalSeconds);
-    setTimerRunning(true);
+  const timeOptions = Array(180) // Create an array of 180 elements
+  .fill(null)
+  .map((_, index) => ({
+    label: `${index + 1} minute${index === 0 ? '' : 's'}`, // Handle singular/plural for minute
+    value: index + 1,
+  }));
+  
+  const TimePicker = () => {
+    const [selectedTime, setSelectedTime] = useState(timeOptions[2].value); // Initial selection
+  
+    const onValueChange = (value) => {
+      setSelectedTime(value);
+    };
+
+    const handleTimerStart = () => {
+      const totalSeconds = selectedTime * 60;
+      setTimerDuration(totalSeconds);
+      setRemainingTime(totalSeconds);
+      setTimerRunning(true);
+    };
+  
+    return (
+      <View style={styles.scrollcontainer}>
+        <View style={styles.buttonsBox}>
+            <View style={styles.buttonContainer}>
+              <Button title={timerRunning ? 'Stop' : 'Start'} onPress={timerRunning ? handleTimerStop : handleTimerStart} color='white'/>
+            </View>
+          </View>
+        {/* Using @react-native-picker/picker for the first option */}
+        <Picker
+          selectedValue={selectedTime}
+          style={styles.picker}
+          onValueChange={onValueChange}
+        >
+          {timeOptions.map((option) => (
+            <Picker.Item key={option.value} label={option.label} value={option.value} />
+          ))}
+        </Picker>
+      </View>
+    );
   };
 
   const handleTimerStop = () => {
@@ -67,28 +102,16 @@ export default function FocusApp() {
               name="user-circle"
               size={30}
               color={Colors[colorScheme ?? 'light'].text}
-              style={{ marginLeft: 305, marginTop: -95, marginRight: 15 }}
+              style={{ marginLeft: 305, marginTop: -47, marginRight: 15 }}
             />
           </Link>
         </View>
 
         <Text style={styles.appTitle}>Foci</Text>
 
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input}
-            placeholder="HH:MM:SS"
-            onChangeText={setInputTime}
-            value={inputTime}
-            keyboardType="numeric"
-            editable={!timerRunning}
-          />
-          <View style={styles.buttonsBox}>
-            <View style={styles.buttonContainer}>
-              <Button title={timerRunning ? 'Stop' : 'Start'} onPress={timerRunning ? handleTimerStop : handleTimerStart} color='white'/>
-            </View>
-          </View>
-        </View>
+        <TimePicker></TimePicker>
+
+        
         <View style={{height: 200}}>
           <MedalItem achievement={achievements[0]}></MedalItem>
         </View>
@@ -152,15 +175,29 @@ const styles = StyleSheet.create({
   buttonsBox: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '80%',
+    width: '52%',
     backgroundColor: 'orange',
     borderRadius: 5,
-    paddingVertical: 10,
+    paddingVertical: 5,
   },
   buttonContainer: {
     flex: 1,
     marginHorizontal: 5,
   },
+  picker: {
+    width: 200,
+    height: 0, // Adjust height as needed
+    marginBottom: 300,
+    marginTop: -10
+  },
+  selectedTime: {
+    marginTop: 10,
+  },
+  scrollcontainer: {
+    alignItems: 'center',
+    marginVertical: 20,
+    marginBottom: 10
+  }
 });
 
 const formatTime = (time: number): string => {

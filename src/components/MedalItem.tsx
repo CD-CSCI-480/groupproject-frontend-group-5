@@ -43,8 +43,9 @@ const styles = StyleSheet.create({
       marginTop: -120
     },
     image : {
-      width: "100%",
-      aspectRatio: 1
+      width: "80%",
+      aspectRatio: 1,
+      marginLeft: 30
     },
     title: {
       fontSize: 25,
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
         marginVertical: 2,
         textAlign:'center',
         marginBottom: 20,
-        marginTop: -20
+        marginTop: 10
       },
     separator: {
       marginVertical: 30,

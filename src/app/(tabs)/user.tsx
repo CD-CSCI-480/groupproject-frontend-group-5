@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Pressable, Text, View, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { FontAwesome } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
+import { LinearGradient } from 'expo-linear-gradient'; 
 import { useColorScheme } from '@/src/components/useColorScheme';
 import { Link, Tabs } from 'expo-router';
 import Colors from '@/src/constants/Colors';
@@ -19,7 +17,7 @@ export default function UserScreen() {
 
 
   return (
-    <LinearGradient // Apply LinearGradient as a wrapper
+    <LinearGradient
       colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
       style={styles.container}>
       <View style={styles.contentContainer}>
@@ -56,7 +54,7 @@ export default function UserScreen() {
 
         <Modal isVisible={isAchievementsModalVisible} style={styles.modalContent}>
           <Pressable onPress={() => {
-            navigation.navigate('achievements');
+            navigation.navigate('Achievements');
             setIsAchievementsModalVisible(false);
           }}>
             <Text style={styles.modalText}>Go to Achievements</Text>

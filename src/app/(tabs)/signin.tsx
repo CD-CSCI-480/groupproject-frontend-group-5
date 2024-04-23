@@ -4,55 +4,33 @@ import { Text } from '@/src/components/Themed';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link } from 'expo-router';
 
-export default function SignupScreen() {
 
-  const [name, setName] = useState('');
+export default function LoginScreen() {
+  
+
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [agree, setAgree] = useState(false);
 
-  const toggleAgree = () => {
-    setAgree(!agree);
-  };
-
-  const handleCreateAccount = () => {
-    console.log("Create Account button pressed");
+  const handleLogin = () => {
+    console.log("Login button pressed");
     <Link href="./index">Go to Foci Tab</Link>;
+    
   };
-
 
   return (
+    
     <ScrollView contentContainerStyle={styles.container}>
       <LinearGradient
         colors={['rgba(254, 159, 15, 0.5)', 'transparent']}
         style={styles.gradient}
       />
-      <Text style={styles.title}>Sign Up to Foci</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Name:</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={setName}
-        />
-      </View>
+      <Text style={styles.title}>Log In to Foci</Text>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Username:</Text>
         <TextInput
           style={styles.input}
           value={username}
           onChangeText={setUsername}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email:</Text>
-        <TextInput
-          style={styles.longInput}
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
         />
       </View>
       <View style={styles.inputContainer}>
@@ -64,26 +42,13 @@ export default function SignupScreen() {
           secureTextEntry={true}
         />
       </View>
-      <View style={styles.checkboxContainer}>
-        <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
-          {agree ? (
-            <Text style={styles.checked}>✓</Text>
-          ) : (
-            <Text style={styles.unchecked}>○</Text>
-          )}
-        </TouchableOpacity>
-        <Text style={styles.agreeText}>
-          I agree with Foci Terms of Service, Privacy Policy, {"\n"}
-          and default Notification Settings.
-        </Text>
-      </View>
       <TouchableOpacity
-        style={styles.createAccountButton}
-        onPress={handleCreateAccount}
+        style={styles.loginButton}
+        onPress={handleLogin}
       >
-        <Text style={styles.createAccountText}>Create Account</Text>
+        <Text style={styles.loginText}>Log In</Text>
       </TouchableOpacity>
-      <Text style={styles.signInText}>Already have an account? Sign In</Text>
+      <Text style={styles.signUpText}>Don't have an account? Sign Up</Text>
     </ScrollView>
   );
 }
@@ -131,46 +96,19 @@ const styles = StyleSheet.create({
     fontSize: 18,
     width: 250,
   },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-    alignSelf: 'flex-start',
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 10,
-  },
-  checked: {
-    color: '#FE9F0F',
-    fontSize: 18,
-  },
-  unchecked: {
-    color: '#ccc',
-    fontSize: 18,
-  },
-  agreeText: {
-    fontSize: 12,
-  },
-  createAccountButton: {
+  loginButton: {
     backgroundColor: '#FE9F0FBD',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 40,
     marginTop: 20,
   },
-  createAccountText: {
+  loginText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
   },
-  signInText: {
+  signUpText: {
     marginTop: 10,
     fontSize: 16,
     color: '#888',
